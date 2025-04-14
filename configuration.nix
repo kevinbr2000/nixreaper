@@ -103,6 +103,8 @@
      nil
      zed-editor
      git
+     hyfetch
+     floorp
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

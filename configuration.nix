@@ -46,14 +46,16 @@
   services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
-  # Configure keymap in X11
+  # Enable LightDM
+  services.xserver.displayManager.lightdm.enable = true;
+
   services.xserver.xkb = {
     layout = "se";
-    variant = "";
   };
+
+
 
   # Configure console keymap
   console.keyMap = "sv-latin1";
@@ -90,22 +92,65 @@
     ];
   };
 
+  users.extraUsers.grim = {
+    shell = pkgs.zsh;
+  };
+
+
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Enable zsh shell
+  programs.zsh.enable = true;
+
+  # Enable Hyprland
+  programs.hyprland.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     #Fetch tools#
      wget
      curl
-     zed-editor
+     git
+     #############
+     #Hyprland stuff#
+     hyprland
+     hyprpaper
+     waybar
+     wofi
+     gnome-tweaks
+     polkit_gnome
+     noto-fonts-emoji
+     nwg-look
+     mako
+     libnotify
+     ################
+     #Dependencies for Zed .nix extension#
      nixd
      nil
      zed-editor
-     git
+     #####################################
+     #Eye candy#
      hyfetch
+     fastfetch
+     kittysay
+     zsh
+     ###########
+     #Basic sht#
      floorp
+     kitty
+     flatpak
+     ###########
+     #Sound tools#
+     pavucontrol
+     #############
+     #Emulation tools#
+     dolphin-emu-beta
+     wiimms-iso-tools
+     #################
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
